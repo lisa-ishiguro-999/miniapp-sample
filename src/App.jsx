@@ -6,6 +6,7 @@ function App() {
   const [message, setMessage] = useState('')
   const [error, setError] = useState('')
   const [name, setName] = useState('')
+  const [liffObject, setLiffObject] = useState(null)
 
   useEffect(() => {
     liff
@@ -14,6 +15,7 @@ function App() {
       })
       .then(() => {
         setMessage('LIFF init succeeded.')
+        setLiffObject(liff)
         liff
           .getProfile()
           .then((profile) => {
