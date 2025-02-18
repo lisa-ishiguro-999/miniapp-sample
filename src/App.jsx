@@ -29,6 +29,23 @@ function App() {
       })
   })
 
+  const sendMessage = async () => {
+    if (!liffObject) return
+
+    try {
+      await liffObject.sendMessages([
+        {
+          type: 'text',
+          text: 'こんにちは！これはLINEミニアプリからのメッセージです🚀',
+        },
+      ])
+      alert('メッセージを送信しました！')
+    } catch (error) {
+      console.error('メッセージ送信エラー:', error)
+      alert('メッセージ送信に失敗しました')
+    }
+  }
+
   return (
     <div className="App">
       {message && <p>{message}</p>}
@@ -38,6 +55,8 @@ function App() {
         </p>
       )}
       {name && <p>こんにちは、{name}さん</p>}
+      <button onClick={sendMessage}>メッセージを送信</button>
+      {error && <p style={{ color: 'red' }}>エラー: {error}</p>}
     </div>
   )
 }
